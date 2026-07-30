@@ -1,27 +1,43 @@
-class Imc {
-    private String nome;
-    private double peso;
-    private double altura;
+import java.util.Scanner;
 
-    public Imc(String nome, double peso, double altura) {
-        this.nome = nome;
-        this.peso = peso;
-        this.altura = altura;
-    }
-    
-    double calcular() {
-        return this.peso / (this.altura * this.altura);
+
+
+class Calculadora {
+    int n1, n2;
+    int res;
+
+    Calculadora(int n1, int n2) {
+        this.n1 = n1;
+        this.n2 = n2;
     }
 
-    void showInfos() {
-        System.out.printf("nome: %s \n peso: %f \n altura: %f \n IMC: %f", this.nome, this.peso, this.altura, calcular());
+    int calcular() {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Digite a operação: 1 = [soma]  2 = [multipicacao] 3 = [divisao] 4 = [subtracao]");
+        int operacao = sc.nextInt();
+        sc.nextLine();
+
+        if(operacao == 1) {
+            this.res =  this.n1 + this.n2;
+        } else if(operacao == 2) {
+            this.res =  this.n1 * this.n2;
+        } else if(operacao == 3) {
+            this.res =  this.n1 / this.n2;
+        } else if(operacao == 4) {
+            this.res =  this.n1 - this.n2;
+        } else {
+            System.out.println("Operador invalido");
+        }
+        sc.close();
+        return res;
     }
 }
 
 public class Main {
     public static void main(String[] args) {
-        Imc calculo = new Imc("fulano", 65.3, 1.76);
+        Calculadora calc = new Calculadora(2,2);
 
-        System.out.println(calculo.calcular());
+        System.out.println(calc.calcular());
     }
 }
